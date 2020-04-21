@@ -255,7 +255,7 @@ METHOD: `POST`
 
 PAYLOAD: (JSON)
 
-```json
+```jsonc
 {
   "username": "pablom",
   "password": "superSecurePassword123$",
