@@ -6,7 +6,15 @@ export class LoginDto {
 
   @IsString()
   password: string
+}
+
+export class Login2Dto {
+  @IsString()
+  username: string
 
   @IsString()
-  token: string
+  password: string
+
+  @IsString()
+  code: string
 }

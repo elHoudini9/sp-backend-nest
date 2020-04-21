@@ -7,7 +7,7 @@ import { User } from '../entities/user.entity'
 import { JwtPayload } from '../../types/jwt-payload.interface'
 import { RegisterDto } from 'src/auth/types/payload/register'
 import { ValidateDto } from 'src/auth/types/payload/validate'
-import { LoginDto } from 'src/auth/types/payload/login'
+import { LoginDto, Login2Dto } from 'src/auth/types/payload/login'
 import { ChangePasswordDto } from 'src/auth/types/payload/change-password'
 
 @EntityRepository(User)
@@ -90,9 +90,26 @@ export class UserRepo extends Repository<User> {
   }
 
   async validateLogin(loginDto: LoginDto): Promise<JwtPayload> {
-    const { username, password, token } = loginDto
+    const { username, password } = loginDto
     const user = await this.findOne({ username })
-    const tokenCheck: any = node2fa.verifyToken(user.secret2fa, token, 5)
+
+    if (user && (await user.validatePassword(password))) {
+      return {
+        username,
+        email: user.email,
+        admin: user.admin,
+        role: user.role,
+        changePassword: user.changePassword
+      }
+    } else {
+      return null
+    }
+  }
+
+  async validateLogin2(loginDto: Login2Dto): Promise<JwtPayload> {
+    const { username, password, code } = loginDto
+    const user = await this.findOne({ username })
+    const tokenCheck: any = node2fa.verifyToken(user.secret2fa, code, 5)
 
     if (
       user &&
@@ -116,7 +133,7 @@ export class UserRepo extends Repository<User> {
   async updatePassword(
     id: string,
     changePasswordDto: ChangePasswordDto
-  ): Promise<string> {
+  ): Promise<{ message: string }> {
     try {
       const user = await this.findOne({ id })
       user.password = await this.hashPassword(
@@ -125,7 +142,9 @@ export class UserRepo extends Repository<User> {
       )
       user.changePassword = false
       await user.save()
-      return 'Successfully changed password!'
+      return {
+        message: 'Successfully changed password!'
+      }
     } catch (err) {
       throw err
     }

@@ -1,17 +1,10 @@
-import {
-  Controller,
-  Post,
-  Body,
-  ValidationPipe,
-  UseGuards,
-  Get
-} from '@nestjs/common'
+import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { AuthService } from './auth.service'
 import { User } from './typeorm/entities/user.entity'
 import { AdminGuard } from './guards/admin'
 import { ValidateDto } from './types/payload/validate'
-import { LoginDto } from './types/payload/login'
+import { LoginDto, Login2Dto } from './types/payload/login'
 import { RegisterDto } from './types/payload/register'
 import { ChangePasswordDto } from './types/payload/change-password'
 import { GetUser } from './decorators/get-user'
@@ -27,27 +20,30 @@ export class AuthController {
 
   @Post('/validate')
   validate(
-    @Body(ValidationPipe) authValidateDto: ValidateDto
+    @Body() validateDto: ValidateDto
   ): Promise<{
     username: string
     needs2fa: boolean
     qrCodeUrl?: string
     secret2fa?: string
   }> {
-    return this.authService.validateCredentials(authValidateDto)
+    return this.authService.validateCredentials(validateDto)
   }
 
   @Post('/login')
-  login(
-    @Body(ValidationPipe) authLoginDto: LoginDto
-  ): Promise<{ accessToken: string }> {
+  login(@Body() authLoginDto: LoginDto): Promise<{ token: string }> {
+    return this.authService.login(authLoginDto)
+  }
+
+  @Post('/login2')
+  login2(@Body() authLoginDto: Login2Dto): Promise<{ token: string }> {
     return this.authService.login(authLoginDto)
   }
 
   @Post('/register')
   @UseGuards(AuthGuard(), AdminGuard)
   register(
-    @Body(ValidationPipe) registerDto: RegisterDto
+    @Body() registerDto: RegisterDto
   ): Promise<{ username: string; qrCodeUrl: string }> {
     return this.authService.register(registerDto)
   }
@@ -57,7 +53,7 @@ export class AuthController {
   updatePassword(
     @GetUser() user,
     @Body() changePasswordDto: ChangePasswordDto
-  ): Promise<string> {
+  ): Promise<{ message: string }> {
     return this.authService.updatePassword(user.id, changePasswordDto)
   }
 

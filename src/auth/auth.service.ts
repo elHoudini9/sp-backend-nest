@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserRepo } from './typeorm/repositories/user.repository'
 import { RegisterDto } from './types/payload/register'
-import { LoginDto } from './types/payload/login'
+import { LoginDto, Login2Dto } from './types/payload/login'
 import { ValidateDto } from './types/payload/validate'
 import { JwtPayload } from './types/jwt-payload.interface'
 import { User } from './typeorm/entities/user.entity'
@@ -55,16 +55,28 @@ export class AuthService {
     return user
   }
 
-  async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
+  async login(loginDto: LoginDto): Promise<{ token: string }> {
     const payload: JwtPayload = await this.userRepo.validateLogin(loginDto)
 
     if (!payload.username) {
       throw new UnauthorizedException('Invalid credentials!')
     }
 
-    const accessToken = await this.jwtService.sign(payload)
+    const token = await this.jwtService.sign(payload)
 
-    return { accessToken }
+    return { token }
+  }
+
+  async login2(loginDto: Login2Dto): Promise<{ token: string }> {
+    const payload: JwtPayload = await this.userRepo.validateLogin2(loginDto)
+
+    if (!payload.username) {
+      throw new UnauthorizedException('Invalid credentials!')
+    }
+
+    const token = await this.jwtService.sign(payload)
+
+    return { token }
   }
 
   async getUsers(): Promise<[User[], number]> {
@@ -84,7 +96,7 @@ export class AuthService {
   async updatePassword(
     id: string,
     changePasswordDto: ChangePasswordDto
-  ): Promise<string> {
+  ): Promise<{ message: string }> {
     return await this.userRepo.updatePassword(id, changePasswordDto)
   }
 }

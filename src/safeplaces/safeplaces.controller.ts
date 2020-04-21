@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  ValidationPipe,
-  Get,
-  Param
-} from '@nestjs/common'
+import { Controller, Post, Body, Get, Param } from '@nestjs/common'
 import { SafePlacesService } from './safeplaces.service'
 import { GetUser } from '../auth/decorators/get-user'
 import { SaveRedactedDto } from './types/payload/saveRedacted.dto'
@@ -22,7 +15,7 @@ export class SafePlacesController {
   // https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md#save-redacted
   @Post('/redacted_trail')
   saveRedactedTrail(
-    @Body(ValidationPipe) payload: SaveRedactedDto,
+    @Body() payload: SaveRedactedDto,
     @GetUser() user // TODO: needs type, we also need to decide if this comes from the logged in user, or something else
   ): Promise<SaveRedactedRes> {
     return this.safePlacesService.saveRedactedTrail(payload, user)
@@ -36,10 +29,7 @@ export class SafePlacesController {
 
   //https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md#publish
   @Post('/safe_paths')
-  publish(
-    @Body(ValidationPipe) payload: PublishDto,
-    @GetUser() user
-  ): Promise<PublishRes> {
+  publish(@Body() payload: PublishDto, @GetUser() user): Promise<PublishRes> {
     return this.safePlacesService.publish(payload, user)
   }
 
