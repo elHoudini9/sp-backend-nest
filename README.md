@@ -2,10 +2,22 @@
 
 Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/safe-places).
 
+## Features:
+
 - One Config file (Simple)
 - Two-Factor Authentication Ready, but Endpoint to match [the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md) is available
 - Postgres DB support, will add other popular databases soon
 - Additional Endpoints are available to help with auth and user management (See bellow)
+
+# TODO
+
+- **Configuration File** - One more level of abstraction (Make it easier for the user, showing a single configuration object, or at least hiding the different exports present in the current file)
+
+- **Test Code** - Write it!
+
+- **Response Types** - Auth module needs types for responses
+
+- **Documentation** - All around improvements
 
 # Installation
 
@@ -79,7 +91,7 @@ RESPONSE: (JSON)
 
 ## Save Redacted\*
 
-_**\*[NOTE](): I am making the assumption that the `data.trail` property in the RESPONSE is actually an array (the current docs are showing `data.trail` as a single object)**_
+_**\*[NOTE](): I am making the assumption that the `data.trail` property in the RESPONSE is actually an array (the [the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md#save-redacted) is showing `data.trail` as a single object)**_
 
 URL: `/redacted_trail`
 
@@ -212,7 +224,7 @@ RESPONSE: (JSON)
 
 ## safe-paths.json\*
 
-_**\*[NOTE](): I am making the assumption that the `data` property in the RESPONSE is actually an array (the current docs are showing `data` as a single object)**_
+_**\*[NOTE](): I am making the assumption that the `data` property in the RESPONSE is actually an array ([the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md#safe-paths.json) is showing `data` as a single object)**_
 
 URL: `/safe_paths/<organization_id>`
 
