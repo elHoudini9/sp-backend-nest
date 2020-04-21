@@ -4,7 +4,7 @@ Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/s
 
 ## Features:
 
-- One Config file (Simple)
+- One config file (Simple)
 - Two-Factor Authentication Ready, but Endpoint to match [the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md) is available
 - Postgres DB support
 - Additional Endpoints are available to help with auth and user management (See bellow)
@@ -16,13 +16,13 @@ Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/s
   - One more level of abstraction - Make it easier for the user, showing a single configuration object, or at least hiding the different exports present in the current file
   - Two-Factor Authentication optional/enforced
 
-- **Typescript**
+- **Types**
 
-  - Auth module needs types for all responses (ugly in `auth.service.ts` and `auth.controller.ts`)
+  - Auth module needs types for all responses (ugly DRY in `auth.service.ts` and `auth.controller.ts`)
 
 - **README File**
 
-  - Anchors and Index Section
+  - Index section
   - All around improvements
   - Configuration File section
 
