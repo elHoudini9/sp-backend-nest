@@ -31,12 +31,16 @@ export class AuthController {
   }
 
   @Post('/login')
-  login(@Body() authLoginDto: LoginDto): Promise<{ token: string }> {
+  login(
+    @Body() authLoginDto: LoginDto
+  ): Promise<{ token: string; maps_api_key: string }> {
     return this.authService.login(authLoginDto)
   }
 
   @Post('/login2')
-  login2(@Body() authLoginDto: Login2Dto): Promise<{ token: string }> {
+  login2(
+    @Body() authLoginDto: Login2Dto
+  ): Promise<{ token: string; maps_api_key: string }> {
     return this.authService.login(authLoginDto)
   }
 

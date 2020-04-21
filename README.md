@@ -3,9 +3,9 @@
 Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/safe-places).
 
 - One Config file (Simple)
-- Two-Factor Authentication Ready
+- Two-Factor Authentication Ready, but Endpoint to match [the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md) is available
 - Postgres DB support, will add other popular databases soon
-- Additional Endpoints are available to help with auth and user management
+- Additional Endpoints are available to help with auth and user management (See bellow)
 
 # Installation
 
@@ -114,7 +114,7 @@ RESPONSE: (JSON)
         "time": 123456789
       }
     ],
-    "user_id": "<user_id>" // This comes from the currently logged in user
+    "user_id": "<user_id>" // ???
   },
   "success": true
 }
@@ -149,7 +149,7 @@ RESPONSE: (JSON)
         "longitude": 12.34,
         "time": 123456789
       },
-      "user_id": "<user_id>" // This comes from the currently logged in user
+      "user_id": "<user_id>" // ???
     }
   ]
 }
