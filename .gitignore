@@ -3,8 +3,8 @@
 /node_modules
 
 # Config
-/src/config/app.ts
-/src/config/db.ts
+/src/config.ts
+
 
 # Logs
 logs

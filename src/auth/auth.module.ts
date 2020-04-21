@@ -5,10 +5,10 @@ import { PassportModule } from '@nestjs/passport'
 import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { UserRepo } from './typeorm/repositories/user.repository'
-import { appConfig } from '../config/app'
+import { jwtConfig } from '../config'
 import { JwtStrategy } from './passport/jwt.strategy'
 
-const { secret, expiresIn } = appConfig.jwt
+const { secret, expiresIn } = jwtConfig
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { PassportStrategy } from '@nestjs/passport'
 import { Strategy, ExtractJwt } from 'passport-jwt'
-import { appConfig } from '../../config/app'
+import { jwtConfig } from '../../config'
 import { JwtPayload } from '../types/jwt-payload.interface'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserRepo } from '../typeorm/repositories/user.repository'
@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: appConfig.jwt.secret
+      secretOrKey: jwtConfig.secret
     })
   }
   async validate(payload: JwtPayload) {

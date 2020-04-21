@@ -14,13 +14,9 @@ $ npm install
 $ yarn
 ```
 
-The app needs 2 files to be created in order to work properly, there are templates in the [./src/config](./src/config) folder
+The app needs 1 file to be created in order to work properly. Please copy the [./src/config.template.ts](./src/config.template.ts) and rename it to [./src/config.ts](./src/config.ts). There are some server specific settings that you should change before getting started.
 
-- [./src/config/app.ts](./src/config/app.ts)
-
-- [./src/config/db.ts](./src/config/db.ts)
-
-These are included in the [./.gitignore](./.gitignore) file in order to avoid storing sensitive data in the git repo
+This file is included in the [./.gitignore](./.gitignore) in order to avoid storing sensitive data in a git repo
 
 # Running the app
 
