@@ -1,6 +1,11 @@
 # Description
 
-Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/safe-places)
+Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/safe-places).
+
+- One Config file (Simple)
+- Two-Factor Authentication Ready
+- Postgres DB support, will add other popular databases soon
+- Additional Endpoints are available to help with auth and user management
 
 # Installation
 
@@ -31,7 +36,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-# Test
+<!-- # Test
 
 Please note that I haven't written any test code yet.
 
@@ -44,7 +49,7 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-```
+``` -->
 
 # Safe Path Core Endpoints
 
