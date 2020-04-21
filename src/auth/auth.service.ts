@@ -8,6 +8,7 @@ import { ValidateDto } from './types/payload/validate'
 import { JwtPayload } from './types/jwt-payload.interface'
 import { User } from './typeorm/entities/user.entity'
 import { ChangePasswordDto } from './types/payload/change-password'
+import { maps_api_key } from 'src/config'
 
 @Injectable()
 export class AuthService {
@@ -55,7 +56,9 @@ export class AuthService {
     return user
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
+  async login(
+    loginDto: LoginDto
+  ): Promise<{ token: string; maps_api_key: string }> {
     const payload: JwtPayload = await this.userRepo.validateLogin(loginDto)
 
     if (!payload.username) {
@@ -64,10 +67,12 @@ export class AuthService {
 
     const token = await this.jwtService.sign(payload)
 
-    return { token }
+    return { token, maps_api_key }
   }
 
-  async login2(loginDto: Login2Dto): Promise<{ token: string }> {
+  async login2(
+    loginDto: Login2Dto
+  ): Promise<{ token: string; maps_api_key: string }> {
     const payload: JwtPayload = await this.userRepo.validateLogin2(loginDto)
 
     if (!payload.username) {
@@ -76,7 +81,7 @@ export class AuthService {
 
     const token = await this.jwtService.sign(payload)
 
-    return { token }
+    return { token, maps_api_key }
   }
 
   async getUsers(): Promise<[User[], number]> {
