@@ -11,9 +11,9 @@ export const dbConfig: TypeOrmModuleOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres', // change to a valid username
-  password: 'postgres', // change to a valid username
-  database: 'safeplaces', // change to a valid database
-  // schema: 'some_schema', // uncomment if needed
+  password: 'postgres', // change to a valid password
+  database: 'safeplaces', // change to a valid database name
+  // schema: 'some_schema', // uncomment and change to an existing schema if needed
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: true // turn OFF for production
 }
