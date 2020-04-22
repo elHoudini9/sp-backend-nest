@@ -1,4 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
+import { User } from './auth/typeorm/entities/user.entity'
+import { RedactedTrail } from './safeplaces/typeorm/entities/redactedTrail.entity'
+import { SafePath } from './safeplaces/typeorm/entities/safepath.entity'
 
 export const maps_api_key = ''
 
@@ -16,6 +19,6 @@ export const dbConfig: TypeOrmModuleOptions = {
   password: 'postgres', // change to a valid password
   database: 'safeplaces', // change to a valid database name
   // schema: 'some_schema', // uncomment and change to an existing schema if needed
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  entities: [User, RedactedTrail, SafePath],
   synchronize: true // turn OFF for production
 }
