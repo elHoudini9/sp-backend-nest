@@ -1,4 +1,11 @@
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common'
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  HttpCode
+} from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { AuthService } from './auth.service'
 import { User } from './typeorm/entities/user.entity'
@@ -31,9 +38,11 @@ export class AuthController {
   }
 
   @Post('/login')
+  @HttpCode(200)
   login(
     @Body() authLoginDto: LoginDto
   ): Promise<{ token: string; maps_api_key: string }> {
+    console.log('dto', authLoginDto)
     return this.authService.login(authLoginDto)
   }
 
