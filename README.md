@@ -12,6 +12,8 @@ Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/s
 
 # TODO
 
+- **Swagger**
+  - Configure properly (as opposed to just using the plugin)
 - **Configuration File**
 
   - One more level of abstraction - Make it easier for the user, showing a single configuration object, or at least hiding the different exports present in the current file
