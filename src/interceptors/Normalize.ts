@@ -9,9 +9,9 @@ import {
 export class NormalizeInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler) {
     const { headers, body } = context.switchToHttp().getRequest()
+
     if (headers['content-type'] === 'application/x-www-form-urlencoded') {
       headers['content-type'] = 'application/json'
-      console.log('Body Before:', body)
       context.switchToHttp().getRequest().body = JSON.parse(
         Object.keys(body)[0]
       )

@@ -5,10 +5,10 @@ import * as uuid from 'uuid/v4'
 import { ConflictException, InternalServerErrorException } from '@nestjs/common'
 import { User } from '../entities/user.entity'
 import { JwtPayload } from '../../types/jwt-payload.interface'
-import { RegisterDto } from 'src/auth/types/payload/register'
-import { ValidateDto } from 'src/auth/types/payload/validate'
-import { LoginDto, Login2Dto } from 'src/auth/types/payload/login'
-import { ChangePasswordDto } from 'src/auth/types/payload/change-password'
+import { RegisterDto } from 'src/auth/types/payload/register.dto'
+import { ValidateDto } from 'src/auth/types/payload/validate.dto'
+import { LoginDto, Login2Dto } from 'src/auth/types/payload/login.dto'
+import { ChangePasswordDto } from 'src/auth/types/payload/change-password.dto'
 
 @EntityRepository(User)
 export class UserRepo extends Repository<User> {
