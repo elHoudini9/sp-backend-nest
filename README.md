@@ -4,6 +4,7 @@ Node Back-end for [MIT's Safe Places App](https://github.com/tripleblindmarket/s
 
 ## Features:
 
+- Swagger API Spec at: `/spec`
 - One config file (Simple)
 - Two-Factor Authentication Ready, but Endpoint to match [the current API specification](https://github.com/tripleblindmarket/safe-places/blob/develop/Safe-Places-Server.md) is available
 - Postgres DB support
